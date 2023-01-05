@@ -120,7 +120,6 @@ services:
       paths:
         - apps/worker/sync/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run build worker-sync:build:production
     autoDeploy: true
     envVars:
       - fromGroup: server-next
