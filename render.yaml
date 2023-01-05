@@ -65,7 +65,7 @@ services:
       paths:
         - apps/badman/**
         - libs/frontend/**
-    buildCommand: npm install --no-optional; npm run build badman:ssr:render
+    buildCommand: npm install --no-optional; npm run build badman:server:render
     startCommand: node dist/badman/server/main.js
     autoDeploy: true
     domains:
