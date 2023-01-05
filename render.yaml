@@ -39,6 +39,8 @@ services:
   - type: worker
     name: worker-sync
     env: docker
+    dockerfilePath: ./apps/worker/sync/Dockerfile
+    dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
