@@ -159,7 +159,7 @@ databases:
   - name: badman
   - region: frankfurt
   - plan: standard
-  - database: badman
+  - databaseName: badman
   - user: badman
   - ipAllowList:
     - source: 94.224.158.199/32
