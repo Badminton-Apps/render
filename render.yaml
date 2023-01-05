@@ -35,9 +35,12 @@ services:
       - fromGroup: server
     domains:
       - api.badman.app
+
   - type: worker
     name: worker-sync
-    env: node
+    env: docker
+    dockerfilePath: ./apps/worker/sync/Dockerfile
+    dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
@@ -47,8 +50,6 @@ services:
       paths:
         - apps/worker/sync/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run build worker-sync:build:production
-    startCommand: node ./dist/apps/worker/sync/main.js
     autoDeploy: false
     envVars:
       - fromGroup: server
