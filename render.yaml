@@ -1,33 +1,12 @@
 services:
-  # next
   - type: web
     name: client
-    env: node
-    region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman/
-    plan: starter
-    branch: main
-    rootDir: code
-    buildFilter:
-      paths:
-        - apps/badman/**
-        - libs/frontend/**
-    buildCommand: npm install --no-optional; npm run build:ssr:render
-    startCommand: node dist/badman/server/main.js
-    autoDeploy: false
-    domains:
-      - beta.badman.app
-    envVars:
-      - fromGroup: client
-
-  - type: web
-    name: client-static
     env: static
     repo: https://github.com/Badminton-Apps/badman/
     plan: starter
     branch: main
     rootDir: code
-    staticPublishPath: dist/badman/browser
+    staticPublishPath: dist/apps/client
     buildFilter:
       paths:
         - apps/badman/**
@@ -160,6 +139,4 @@ databases:
     plan: standard
     databaseName: badman
     user: badman
-    ipAllowList:
-      - source: 94.224.158.199/32
-      - description: Glenn
+    ipAllowList: []
