@@ -17,7 +17,8 @@ services:
     autoDeploy: false
     domains:
       - beta.badman.app
-    fromGroup: client
+    envVars:
+      fromGroup: client
 
   - type: web
     name: client-static
@@ -34,7 +35,8 @@ services:
         - libs/frontend/**
     buildCommand: npm install --no-optional; npm run build badman:build:render
     autoDeploy: false
-    fromGroup: client
+    envVars:
+      fromGroup: client
 
   - type: web
     name: api
@@ -51,7 +53,8 @@ services:
     buildCommand: npm install --no-optional; npm run api:build:production
     startCommand: node ./dist/apps/api/main.js
     autoDeploy: false
-    fromGroup: server
+    envVars:
+      fromGroup: server
     domains:
       - api.badman.app
   - type: web
@@ -69,7 +72,8 @@ services:
     buildCommand: npm install --no-optional; npm run worker-sync:build:production
     startCommand: node ./dist/apps/worker/sync/main.js
     autoDeploy: false
-    fromGroup: server
+    envVars:
+      fromGroup: server
 
   # next
   - type: web
@@ -88,7 +92,8 @@ services:
     autoDeploy: true
     domains:
       - beta.badman.app
-    fromGroup: client-next
+    envVars:
+      fromGroup: client-next
 
   - type: web
     name: client-next-static
@@ -104,7 +109,8 @@ services:
         - libs/frontend/**
     buildCommand: npm install --no-optional; npm run build badman:build:render
     autoDeploy: true
-    fromGroup: client-next
+    envVars:
+      fromGroup: client-next
 
   - type: web
     name: api-next
@@ -120,7 +126,8 @@ services:
     buildCommand: npm install --no-optional; npm run api:build:production
     startCommand: node ./dist/apps/api/main.js
     autoDeploy: true
-    fromGroup: server-next
+    envVars:
+      fromGroup: server-next
     domains:
       - api-next.badman.app
   - type: web
@@ -137,7 +144,8 @@ services:
     buildCommand: npm install --no-optional; npm run worker-sync:build:production
     startCommand: node ./dist/apps/worker/sync/main.js
     autoDeploy: true
-    fromGroup: server-next
+    envVars:
+      fromGroup: server-next
 
   # Services
   - type: redis
