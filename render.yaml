@@ -11,7 +11,7 @@ services:
       paths:
         - apps/client/**
         - libs/frontend/**
-    buildCommand: npm install --no-optional; npm run build badman:build:render
+    buildCommand: npm install --no-optional; npm run build client:build:render
     autoDeploy: false
     envVars:
       - fromGroup: client
