@@ -35,7 +35,7 @@ services:
       - fromGroup: server
     domains:
       - api.badman.app
-  - type: web
+  - type: worker
     name: worker-sync
     env: node
     region: frankfurt
@@ -107,7 +107,7 @@ services:
       - fromGroup: server-next
     domains:
       - api-next.badman.app
-  - type: web
+  - type: worker
     name: worker-sync-next
     env: node
     region: frankfurt
