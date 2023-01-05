@@ -9,7 +9,7 @@ services:
     staticPublishPath: dist/apps/client
     buildFilter:
       paths:
-        - apps/badman/**
+        - apps/client/**
         - libs/frontend/**
     buildCommand: npm install --no-optional; npm run build badman:build:render
     autoDeploy: false
@@ -45,7 +45,7 @@ services:
     rootDir: code
     buildFilter:
       paths:
-        - apps/api/**
+        - apps/worker/sync/**
         - libs/backend/**
     buildCommand: npm install --no-optional; npm run worker-sync:build:production
     startCommand: node ./dist/apps/worker/sync/main.js
