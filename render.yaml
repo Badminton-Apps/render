@@ -28,7 +28,7 @@ services:
       paths:
         - apps/api/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run api:build:production
+    buildCommand: npm install --no-optional; npm run build api:build:production
     startCommand: node ./dist/apps/api/main.js
     autoDeploy: false
     envVars:
@@ -47,7 +47,7 @@ services:
       paths:
         - apps/worker/sync/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run worker-sync:build:production
+    buildCommand: npm install --no-optional; npm run build worker-sync:build:production
     startCommand: node ./dist/apps/worker/sync/main.js
     autoDeploy: false
     envVars:
@@ -65,7 +65,7 @@ services:
       paths:
         - apps/badman/**
         - libs/frontend/**
-    buildCommand: npm install --no-optional; npm run build:ssr:render
+    buildCommand: npm install --no-optional; npm run build build:ssr:render
     startCommand: node dist/badman/server/main.js
     autoDeploy: true
     domains:
@@ -100,7 +100,7 @@ services:
       paths:
         - apps/api/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run api:build:production
+    buildCommand: npm install --no-optional; npm run build api:build:production
     startCommand: node ./dist/apps/api/main.js
     autoDeploy: true
     envVars:
@@ -118,7 +118,7 @@ services:
       paths:
         - apps/worker/sync/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run worker-sync:build:production
+    buildCommand: npm install --no-optional; npm run build worker-sync:build:production
     startCommand: node ./dist/apps/worker/sync/main.js
     autoDeploy: true
     envVars:
