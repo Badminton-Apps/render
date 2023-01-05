@@ -76,7 +76,6 @@ services:
   - type: web
     name: client-next-static
     env: static
-    region: frankfurt
     repo: https://github.com/Badminton-Apps/badman-next/
     plan: starter
     branch: main
