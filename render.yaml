@@ -157,11 +157,11 @@ services:
 
 databases:
   - name: badman
-  - region: frankfurt
-  - plan: standard
-  - databaseName: badman
-  - user: badman
-  - ipAllowList:
+    region: frankfurt
+    plan: standard
+    databaseName: badman
+    user: badman
+    ipAllowList:
     - source: 94.224.158.199/32
     - description: Glenn
 
