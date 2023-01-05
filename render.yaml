@@ -111,7 +111,7 @@ services:
     name: worker-sync-next
     env: docker
     dockerfilePath: ./apps/worker/sync/Dockerfile
-    # dockerContext: ./
+    dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
