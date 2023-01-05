@@ -23,7 +23,6 @@ services:
   - type: web
     name: client-static
     env: static
-    region: frankfurt
     repo: https://github.com/Badminton-Apps/badman/
     plan: starter
     branch: main
@@ -59,7 +58,7 @@ services:
       - api.badman.app
   - type: web
     name: worker-sync
-    env: docker
+    env: node
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman/
     plan: starter
@@ -132,7 +131,7 @@ services:
       - api-next.badman.app
   - type: web
     name: worker-sync-next
-    env: docker
+    env: node
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman-next/
     plan: starter
@@ -162,6 +161,5 @@ databases:
     databaseName: badman
     user: badman
     ipAllowList:
-    - source: 94.224.158.199/32
-    - description: Glenn
-
+      - source: 94.224.158.199/32
+      - description: Glenn
