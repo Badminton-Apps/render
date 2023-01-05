@@ -11,7 +11,7 @@ services:
       paths:
         - apps/client/**
         - libs/frontend/**
-    buildCommand: npm install --no-optional; npm run build client:build --configuration=render
+    buildCommand: npm install --no-optional; npm run build client:build -- --configuration=render
     autoDeploy: false
     envVars:
       - fromGroup: client
@@ -28,7 +28,7 @@ services:
       paths:
         - apps/api/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run build api:build --configuration=production
+    buildCommand: npm install --no-optional; npm run build api:build -- --configuration=production
     startCommand: node ./dist/apps/api/main.js
     autoDeploy: false
     envVars:
