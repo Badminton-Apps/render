@@ -2,7 +2,7 @@ services:
   - type: web
     name: client
     env: static
-    repo: https://github.com/Badminton-Apps/badman/
+    repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
     branch: main
     rootDir: code
@@ -20,7 +20,7 @@ services:
     name: api
     env: node
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman/
+    repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
     branch: main
     rootDir: code
@@ -39,7 +39,7 @@ services:
     name: worker-sync
     env: node
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman/
+    repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
     branch: main
     rootDir: code
@@ -58,7 +58,7 @@ services:
     name: client-next
     env: node
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman-next/
+    repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
     branch: main
     buildFilter:
@@ -76,7 +76,7 @@ services:
   - type: web
     name: client-next-static
     env: static
-    repo: https://github.com/Badminton-Apps/badman-next/
+    repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
     branch: main
     staticPublishPath: dist/badman/browser
@@ -93,7 +93,7 @@ services:
     name: api-next
     env: node
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman-next/
+    repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
     branch: main
     buildFilter:
@@ -111,7 +111,7 @@ services:
     name: worker-sync-next
     env: node
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman-next/
+    repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
     branch: main
     buildFilter:
