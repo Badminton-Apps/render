@@ -1,0 +1,159 @@
+services:
+  # next
+  - type: web
+    name: client
+    env: node
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman/
+    plan: starter
+    branch: main
+    rootDir: code
+    buildFilter:
+      paths:
+        - apps/badman/**
+        - libs/frontend/**
+    buildCommand: npm install --no-optional; npm run build:ssr:render
+    startCommand: node dist/badman/server/main.js
+    autoDeploy: false
+    domains:
+      - beta.badman.app
+    fromGroup: client
+
+  - type: web
+    name: client-static
+    env: static
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman/
+    plan: starter
+    branch: main
+    rootDir: code
+    staticPublishPath: dist/badman/browser
+    buildFilter:
+      paths:
+        - apps/badman/**
+        - libs/frontend/**
+    buildCommand: npm install --no-optional; npm run build badman:build:render
+    autoDeploy: false
+    fromGroup: client
+
+  - type: web
+    name: api
+    env: node
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman/
+    plan: starter
+    branch: main
+    rootDir: code
+    buildFilter:
+      paths:
+        - apps/api/**
+        - libs/backend/**
+    buildCommand: npm install --no-optional; npm run api:build:production
+    startCommand: node ./dist/apps/api/main.js
+    autoDeploy: false
+    fromGroup: server
+    domains:
+      - api.badman.app
+  - type: web
+    name: worker-sync
+    env: docker
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman/
+    plan: starter
+    branch: main
+    rootDir: code
+    buildFilter:
+      paths:
+        - apps/api/**
+        - libs/backend/**
+    buildCommand: npm install --no-optional; npm run worker-sync:build:production
+    startCommand: node ./dist/apps/worker/sync/main.js
+    autoDeploy: false
+    fromGroup: server
+
+  # next
+  - type: web
+    name: client-next
+    env: node
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman-next/
+    plan: starter
+    branch: main
+    buildFilter:
+      paths:
+        - apps/badman/**
+        - libs/frontend/**
+    buildCommand: npm install --no-optional; npm run build:ssr:render
+    startCommand: node dist/badman/server/main.js
+    autoDeploy: true
+    domains:
+      - beta.badman.app
+    fromGroup: client-next
+
+  - type: web
+    name: client-next-static
+    env: static
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman-next/
+    plan: starter
+    branch: main
+    staticPublishPath: dist/badman/browser
+    buildFilter:
+      paths:
+        - apps/badman/**
+        - libs/frontend/**
+    buildCommand: npm install --no-optional; npm run build badman:build:render
+    autoDeploy: true
+    fromGroup: client-next
+
+  - type: web
+    name: api-next
+    env: node
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman-next/
+    plan: starter
+    branch: main
+    buildFilter:
+      paths:
+        - apps/api/**
+        - libs/backend/**
+    buildCommand: npm install --no-optional; npm run api:build:production
+    startCommand: node ./dist/apps/api/main.js
+    autoDeploy: true
+    fromGroup: server-next
+    domains:
+      - api-next.badman.app
+  - type: web
+    name: worker-sync-next
+    env: docker
+    region: frankfurt
+    repo: https://github.com/Badminton-Apps/badman-next/
+    plan: starter
+    branch: main
+    buildFilter:
+      paths:
+        - apps/api/**
+        - libs/backend/**
+    buildCommand: npm install --no-optional; npm run worker-sync:build:production
+    startCommand: node ./dist/apps/worker/sync/main.js
+    autoDeploy: true
+    fromGroup: server-next
+
+  # Services
+  - type: redis
+    name: redis
+    plan: free
+    region: frankfurt
+    ipAllowList: [] # only allow internal connections
+    maxmemoryPolicy: allkeys-lru
+
+databases:
+  - name: badman
+  - region: frankfurt
+  - plan: standard
+  - database: badman
+  - user: badman
+  - ipAllowList:
+    - source: 94.224.158.199/32
+    - description: Glenn
+
