@@ -66,6 +66,8 @@ services:
       paths:
         - apps/badman/**
         - libs/frontend/**
+      ignoredPaths:
+        - apps/badman/src/assets/CHANGELOG.md
     buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build:ssr:render
     startCommand: node dist/badman/server/main.js
     autoDeploy: true
