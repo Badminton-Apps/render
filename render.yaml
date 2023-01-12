@@ -15,6 +15,7 @@ services:
     autoDeploy: false
     envVars:
       - fromGroup: client
+      - fromGroup: GLOBAL
 
   - type: web
     name: api
