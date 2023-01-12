@@ -34,6 +34,7 @@ services:
     autoDeploy: false
     envVars:
       - fromGroup: server
+      - fromGroup: GLOBAL
     domains:
       - api.badman.app
 
@@ -54,6 +55,7 @@ services:
     autoDeploy: false
     envVars:
       - fromGroup: server
+      - fromGroup: GLOBAL
 
   # next
   - type: web
@@ -76,6 +78,7 @@ services:
       - beta.badman.app
     envVars:
       - fromGroup: client-next
+      - fromGroup: GLOBAL
 
   - type: web
     name: client-next-static
@@ -94,6 +97,7 @@ services:
     autoDeploy: true
     envVars:
       - fromGroup: client-next
+      - fromGroup: GLOBAL
 
   - type: web
     name: api-next
@@ -111,6 +115,7 @@ services:
     autoDeploy: true
     envVars:
       - fromGroup: server-next
+      - fromGroup: GLOBAL
     domains:
       - api-next.badman.app
   - type: worker
@@ -129,6 +134,7 @@ services:
     autoDeploy: true
     envVars:
       - fromGroup: server-next
+      - fromGroup: GLOBAL
 
   # Services
   - type: redis
