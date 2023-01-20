@@ -102,8 +102,6 @@ services:
   - type: web
     name: api-next
     env: docker
-    dockerfilePath: ./apps/api/Dockerfile
-    dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
