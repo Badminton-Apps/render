@@ -101,7 +101,9 @@ services:
 
   - type: web
     name: api-next
-    env: node
+    env: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman-next.git
     plan: starter
@@ -110,8 +112,6 @@ services:
       paths:
         - apps/api/**
         - libs/backend/**
-    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build api:build:production
-    startCommand: node ./dist/apps/api/main.js
     autoDeploy: true
     envVars:
       - fromGroup: server-next
