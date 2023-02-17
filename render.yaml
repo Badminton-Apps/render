@@ -71,7 +71,7 @@ services:
         - libs/frontend/**
       ignoredPaths:
         - apps/badman/src/assets/CHANGELOG.md
-    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build badman:build:render
+    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build badman:build --configuration render
     autoDeploy: true
     envVars:
       - fromGroup: client-next
@@ -116,7 +116,7 @@ services:
       - fromGroup: server-next
       - fromGroup: GLOBAL
     domains:
-      - beta.badman.app/api
+      - beta-api.badman.app
 
   - type: worker
     name: worker-sync-next
