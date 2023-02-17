@@ -59,6 +59,25 @@ services:
 
   # next
   - type: web
+    name: client-next-static
+    env: static
+    repo: https://github.com/Badminton-Apps/badman-next.git
+    plan: starter
+    branch: main
+    staticPublishPath: dist/badman/browser
+    buildFilter:
+      paths:
+        - apps/badman/**
+        - libs/frontend/**
+      ignoredPaths:
+        - apps/badman/src/assets/CHANGELOG.md
+    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build badman:build:render
+    autoDeploy: true
+    envVars:
+      - fromGroup: client-next
+      - fromGroup: GLOBAL
+
+  - type: web
     name: client-next
     env: node
     region: frankfurt
@@ -80,24 +99,7 @@ services:
       - fromGroup: client-next
       - fromGroup: GLOBAL
 
-  - type: web
-    name: client-next-static
-    env: static
-    repo: https://github.com/Badminton-Apps/badman-next.git
-    plan: starter
-    branch: main
-    staticPublishPath: dist/badman/browser
-    buildFilter:
-      paths:
-        - apps/badman/**
-        - libs/frontend/**
-      ignoredPaths:
-        - apps/badman/src/assets/CHANGELOG.md
-    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build badman:build:render
-    autoDeploy: true
-    envVars:
-      - fromGroup: client-next
-      - fromGroup: GLOBAL
+
 
   - type: web
     name: api-next
@@ -117,7 +119,8 @@ services:
       - fromGroup: server-next
       - fromGroup: GLOBAL
     domains:
-      - api-next.badman.app
+      - beta.badman.app
+
   - type: worker
     name: worker-sync-next
     env: docker
