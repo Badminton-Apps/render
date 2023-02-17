@@ -98,9 +98,6 @@ services:
     envVars:
       - fromGroup: client-next
       - fromGroup: GLOBAL
-
-
-
   - type: web
     name: api-next
     env: docker
@@ -119,7 +116,7 @@ services:
       - fromGroup: server-next
       - fromGroup: GLOBAL
     domains:
-      - beta.badman.app
+      - beta.badman.app/api
 
   - type: worker
     name: worker-sync-next
