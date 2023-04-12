@@ -1,42 +1,22 @@
 services:
   - type: web
-    name: client
-    env: static
-    repo: https://github.com/Badminton-Apps/badman.git
-    plan: starter
-    branch: main
-    rootDir: code
-    staticPublishPath: dist/apps/client
-    buildFilter:
-      paths:
-        - apps/client/**
-        - libs/frontend/**
-    buildCommand: npm install --no-optional; npm run build client:build:render
-    autoDeploy: false
-    envVars:
-      - fromGroup: client
-      - fromGroup: GLOBAL
-
-  - type: web
     name: api
-    env: node
+    env: docker
+    dockerfilePath: ./apps/api/Dockerfile
+    dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
     branch: main
-    rootDir: code
     buildFilter:
       paths:
         - apps/api/**
         - libs/backend/**
-    buildCommand: npm install --no-optional; npm run build api:build:production
-    startCommand: node ./dist/apps/api/main.js
-    autoDeploy: false
+    autoDeploy: true
     envVars:
       - fromGroup: server
       - fromGroup: GLOBAL
-    domains:
-      - api.badman.app
+      - fromGroup: cache
 
   - type: worker
     name: worker-sync
@@ -47,7 +27,6 @@ services:
     repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
     branch: main
-    rootDir: code
     buildFilter:
       paths:
         - apps/worker/sync/**
@@ -56,57 +35,18 @@ services:
     envVars:
       - fromGroup: server
       - fromGroup: GLOBAL
+      - fromGroup: cache
 
   # next
-  - type: web
-    name: client-next-static
-    env: static
-    repo: https://github.com/Badminton-Apps/badman-next.git
-    plan: starter
-    branch: main
-    staticPublishPath: dist/badman/browser
-    buildFilter:
-      paths:
-        - apps/badman/**
-        - libs/frontend/**
-      ignoredPaths:
-        - apps/badman/src/assets/CHANGELOG.md
-    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build badman:build --configuration render
-    autoDeploy: false
-    envVars:
-      - fromGroup: client-next
-      - fromGroup: GLOBAL
-
-  - type: web
-    name: client-next
-    env: node
-    region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman-next.git
-    plan: starter
-    branch: main
-    buildFilter:
-      paths:
-        - apps/badman/**
-        - libs/frontend/**
-      ignoredPaths:
-        - apps/badman/src/assets/CHANGELOG.md
-    buildCommand: yarn install --frozen-lockfile; npx nx reset; yarn build:ssr:render
-    startCommand: node dist/badman/server/main.js
-    autoDeploy: true
-    domains:
-      - beta.badman.app
-    envVars:
-      - fromGroup: client-next
-      - fromGroup: GLOBAL
   - type: web
     name: api-next
     env: docker
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman-next.git
+    repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
-    branch: main
+    branch: develop
     buildFilter:
       paths:
         - apps/api/**
@@ -115,8 +55,7 @@ services:
     envVars:
       - fromGroup: server-next
       - fromGroup: GLOBAL
-    domains:
-      - beta-api.badman.app
+      - fromGroup: cache
 
   - type: worker
     name: worker-sync-next
@@ -124,9 +63,9 @@ services:
     dockerfilePath: ./apps/worker/sync/Dockerfile
     dockerContext: ./
     region: frankfurt
-    repo: https://github.com/Badminton-Apps/badman-next.git
+    repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
-    branch: main
+    branch: develop
     buildFilter:
       paths:
         - apps/worker/sync/**
@@ -135,11 +74,12 @@ services:
     envVars:
       - fromGroup: server-next
       - fromGroup: GLOBAL
+      - fromGroup: cache
 
   # Services
   - type: redis
-    name: redis
-    plan: free
+    name: badman
+    plan: starter
     region: frankfurt
     ipAllowList: [] # only allow internal connections
     maxmemoryPolicy: allkeys-lru
