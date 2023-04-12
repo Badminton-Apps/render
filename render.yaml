@@ -31,7 +31,7 @@ services:
       paths:
         - apps/worker/sync/**
         - libs/backend/**
-    autoDeploy: false
+    autoDeploy: true
     envVars:
       - fromGroup: server
       - fromGroup: GLOBAL
