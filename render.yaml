@@ -25,7 +25,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
-    plan: starter
+    plan: standard
     branch: main
     buildFilter:
       paths:
@@ -64,7 +64,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
-    plan: starter
+    plan: standard
     branch: develop
     buildFilter:
       paths:
