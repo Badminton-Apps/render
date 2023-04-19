@@ -3,12 +3,12 @@ services:
   - type: web
     name: api
     env: docker
-    previewPlan: free
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     plan: starter
+    pullRequestPreviewsEnabled: false
     branch: main
     buildFilter:
       paths:
@@ -27,7 +27,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
-    previewPlan: free
+    pullRequestPreviewsEnabled: false
     plan: standard
     branch: main
     buildFilter:
@@ -48,7 +48,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
-    previewPlan: free
+    pullRequestPreviewsEnabled: true
     plan: free
     branch: develop
     buildFilter:
@@ -68,7 +68,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
-    plan: standard
+    pullRequestPreviewsEnabled: false
     previewPlan: free
     branch: develop
     buildFilter:
