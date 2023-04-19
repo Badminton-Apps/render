@@ -2,7 +2,6 @@ services:
   - type: web
     name: api
     env: docker
-    previewsEnabled: false
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./
     region: frankfurt
@@ -22,7 +21,6 @@ services:
   - type: worker
     name: worker-sync
     env: docker
-    previewsEnabled: false
     dockerfilePath: ./apps/worker/sync/Dockerfile
     dockerContext: ./
     region: frankfurt
@@ -43,13 +41,11 @@ services:
   - type: web
     name: api-next
     env: docker
-    previewsEnabled: true
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     plan: free
-    previewPlan: free
     branch: develop
     buildFilter:
       paths:
@@ -64,7 +60,6 @@ services:
   - type: worker
     name: worker-sync-next
     env: docker
-    previewsEnabled: false
     dockerfilePath: ./apps/worker/sync/Dockerfile
     dockerContext: ./
     region: frankfurt
