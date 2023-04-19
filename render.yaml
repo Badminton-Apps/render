@@ -50,7 +50,7 @@ services:
     repo: https://github.com/Badminton-Apps/badman.git
     pullRequestPreviewsEnabled: true
     plan: starter
-    previewPlan: free
+    previewPlan: starter
     branch: develop
     buildFilter:
       paths:
