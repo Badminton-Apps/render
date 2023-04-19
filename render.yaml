@@ -49,7 +49,7 @@ services:
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     pullRequestPreviewsEnabled: true
-    plan: free
+    plan: starter
     branch: develop
     buildFilter:
       paths:
