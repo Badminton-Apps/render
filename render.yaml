@@ -1,7 +1,9 @@
+previewsEnabled: true
 services:
   - type: web
     name: api
     env: docker
+    previewPlan: free
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./
     region: frankfurt
@@ -25,6 +27,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
+    previewPlan: free
     plan: standard
     branch: main
     buildFilter:
@@ -45,6 +48,7 @@ services:
     dockerContext: ./
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
+    previewPlan: free
     plan: free
     branch: develop
     buildFilter:
@@ -65,6 +69,7 @@ services:
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     plan: standard
+    previewPlan: free
     branch: develop
     buildFilter:
       paths:
