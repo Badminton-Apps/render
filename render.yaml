@@ -46,6 +46,7 @@ services:
     env: docker
     dockerfilePath: ./apps/api/Dockerfile
     dockerContext: ./
+    scaling: false
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     pullRequestPreviewsEnabled: true
