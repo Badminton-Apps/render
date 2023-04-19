@@ -69,7 +69,6 @@ services:
     region: frankfurt
     repo: https://github.com/Badminton-Apps/badman.git
     pullRequestPreviewsEnabled: false
-    previewPlan: free
     branch: develop
     buildFilter:
       paths:
